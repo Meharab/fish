@@ -17,7 +17,6 @@ type QRAsset struct {
 	ProductNameBn                    string   `json:"product_name_bn"`
 	SpeciesEn                        string   `json:"species_en"`
 	SpeciesBn                        string   `json:"species_bn"`
-	// ProductImage                     string   `json:"product_image"`
 	ProcessingTypeEn                 string   `json:"processing_type_en"`
 	ProcessingTypeBn                 string   `json:"processing_type_bn"`
 	DateOfHarvesting                 string   `json:"date_of_harvesting"`
@@ -36,10 +35,12 @@ type QRAsset struct {
 	CookingTemperatureEn             string   `json:"cooking_temperature_en"`
 	CookingTemperatureBn             string   `json:"cooking_temperature_bn"`
 	BatchNumber                      string   `json:"batch_number"`
+	SecondaryBatch                   string   `json:"secondary_batch"`
 	LotNumber                        string   `json:"lot_number"`
 	NetWeight                        float64  `json:"net_weight"`
 	CertificationEn                  []string `json:"certification_en"`
 	CertificationBn                  []string `json:"certification_bn"`
+	CertificationLink                []string `json:"certification_link"`
 	SourceOfFishEn                   string   `json:"source_of_fish_en"`
 	SourceOfFishBn                   string   `json:"source_of_fish_bn"`
 	ProductionLatitude               float64  `json:"production_latitude"`
@@ -60,49 +61,50 @@ type QRAsset struct {
 func (s *SmartContract) InitLedger(ctx contractapi.TransactionContextInterface) error {
 	assets := []QRAsset{
 		{
-			ProductID: "1",
-			ProductNameEn: "Frozen Hilsa Fish",
-			ProductNameBn: "Frozen Hilsa Fish",
-			SpeciesEn: "Hilsa",
-			SpeciesBn: "Hilsa",
-			// ProductImage: "https://fish.com/hilsa.jpg",
-			ProcessingTypeEn: "Frozen",
-			ProcessingTypeBn: "Frozen",
-			DateOfHarvesting: "2025-09-01",
-			DateOfPackaging: "2025-09-03",
-			ExpiredDate: "2026-03-01",
-			MRP: 1200.5,
-			HasBlastFreezer: true,
-			HasIQF: false,
-			HasVacuumPackage: true,
-			HasFoodGradePackageLDPE4: true,
-			StorageEn: "Cold Storage Dhaka",
-			StorageBn: "Cold Storage Dhaka",
-			WaterSourceEn: []string{"Filtered water", "Arsenic"},
-			WaterSourceBn: []string{"Filtered water", "Arsenic"},
-			HasFreezerVanTransportation: true,
-			CookingTemperatureEn: "N/A",
-			CookingTemperatureBn: "N/A",
-			BatchNumber: "BATCH-001",
-			LotNumber: "LOT-001",
-			NetWeight: 2.5,
-			CertificationEn: []string{"ISO22000", "HACCP"},
-			CertificationBn: []string{"ISO22000", "HACCP"},
-			SourceOfFishEn: "Padma River",
-			SourceOfFishBn: "Padma River",
-			ProductionLatitude: 23.8103,
-			ProductionLongitude: 90.4125,
-			ProducerOrganizationEn: "Padma Fisheries Ltd",
-			ProducerOrganizationBn: "Padma Fisheries Ltd",
-			FishCollectionCenterLatitude: 23.90,
+			ProductID:                     "0",
+			ProductNameEn:                 "Frozen Hilsa Fish",
+			ProductNameBn:                 "Frozen Hilsa Fish",
+			SpeciesEn:                     "Hilsa",
+			SpeciesBn:                     "Hilsa",
+			ProcessingTypeEn:              "Frozen",
+			ProcessingTypeBn:              "Frozen",
+			DateOfHarvesting:              "2025-09-01",
+			DateOfPackaging:               "2025-09-03",
+			ExpiredDate:                   "2026-03-01",
+			MRP:                           1200.5,
+			HasBlastFreezer:               true,
+			HasIQF:                        false,
+			HasVacuumPackage:              true,
+			HasFoodGradePackageLDPE4:      true,
+			StorageEn:                     "Cold Storage Dhaka",
+			StorageBn:                     "Cold Storage Dhaka",
+			WaterSourceEn:                 []string{"Filtered water", "Arsenic"},
+			WaterSourceBn:                 []string{"Filtered water", "Arsenic"},
+			HasFreezerVanTransportation:   true,
+			CookingTemperatureEn:          "N/A",
+			CookingTemperatureBn:          "N/A",
+			BatchNumber:                   "BATCH-001",
+			SecondaryBatch:                "SBATCH-001",
+			LotNumber:                     "LOT-001",
+			NetWeight:                     2.5,
+			CertificationEn:               []string{"ISO22000", "HACCP"},
+			CertificationBn:               []string{"ISO22000", "HACCP"},
+			CertificationLink:             []string{"https://iso.org/22000", "https://haccp.org"},
+			SourceOfFishEn:                "Padma River",
+			SourceOfFishBn:                "Padma River",
+			ProductionLatitude:            23.8103,
+			ProductionLongitude:           90.4125,
+			ProducerOrganizationEn:        "Padma Fisheries Ltd",
+			ProducerOrganizationBn:        "Padma Fisheries Ltd",
+			FishCollectionCenterLatitude:  23.90,
 			FishCollectionCenterLongitude: 90.44,
-			CollectorOrganizationEn: "Dhaka Fish Collectors",
-			CollectorOrganizationBn: "Dhaka Fish Collectors",
-			FishProcessingUnitLatitude: 23.75,
-			FishProcessingUnitLongitude: 90.39,
-			ProcessorOrganizationEn: "Bangladesh Fish Processing Ltd",
-			ProcessorOrganizationBn: "Bangladesh Fish Processing Ltd",
-			DocType: "asset",
+			CollectorOrganizationEn:       "Dhaka Fish Collectors",
+			CollectorOrganizationBn:       "Dhaka Fish Collectors",
+			FishProcessingUnitLatitude:    23.75,
+			FishProcessingUnitLongitude:   90.39,
+			ProcessorOrganizationEn:       "Bangladesh Fish Processing Ltd",
+			ProcessorOrganizationBn:       "Bangladesh Fish Processing Ltd",
+			DocType:                       "asset",
 		},
 	}
 
@@ -162,7 +164,6 @@ func (s *SmartContract) CreateAsset(ctx contractapi.TransactionContextInterface,
 	return nil
 }
 
-
 func (s *SmartContract) ReadAsset(ctx contractapi.TransactionContextInterface, productID string) (*QRAsset, error) {
 	key := fmt.Sprintf("QR:%s", productID)
 	assetJSON, err := ctx.GetStub().GetState(key)
@@ -178,4 +179,29 @@ func (s *SmartContract) ReadAsset(ctx contractapi.TransactionContextInterface, p
 		return nil, err
 	}
 	return &asset, nil
+}
+
+func (s *SmartContract) GetAllAssets(ctx contractapi.TransactionContextInterface) ([]*QRAsset, error) {
+	resultsIterator, err := ctx.GetStub().GetStateByRange("", "")
+	if err != nil {
+		return nil, err
+	}
+	defer resultsIterator.Close()
+
+	var assets []*QRAsset
+	for resultsIterator.HasNext() {
+		queryResponse, err := resultsIterator.Next()
+		if err != nil {
+			return nil, err
+		}
+
+		var asset QRAsset
+		err = json.Unmarshal(queryResponse.Value, &asset)
+		if err != nil {
+			return nil, err
+		}
+		assets = append(assets, &asset)
+	}
+
+	return assets, nil
 }
