@@ -1,7 +1,7 @@
 {
   "productId": "1",
-  "product_name_en": "Frozen Hilsa Fish",
-  "product_name_bn": "Frozen Hilsa Fish",
+  "product_name_en": "Hilsa Fish (1.5 – 2 kg)",
+  "product_name_bn": "ইলিশ মাছ (১.৫ থেকে ২ কেজি)",
   "species_en": "Hilsa",
   "species_bn": "Hilsa",
   "processing_type_en": "Frozen",
@@ -14,22 +14,22 @@
   "has_iqf": false,
   "has_vacuum_package": true,
   "has_food_grade_package_ldpe_4": true,
-  "storage_en": "Cold Storage Dhaka",
-  "storage_bn": "Cold Storage Dhaka",
+  "storage_en": "Deep Freezer (-18⁰C)",
+  "storage_bn": "ডিপ ফ্রিজার (-১৮⁰C)",
   "water_source_en": [
-    "Filtered water",
-    "Arsenic"
+    "Clean groundwater used for cleaning the processing zone",
+    "Potable water (Reverse osmosis) used for washing processed fish"
   ],
   "water_source_bn": [
-    "Filtered water",
-    "Arsenic"
+    "প্রক্রিয়াজাতকরণ অঞ্চল পরিষ্কারের জন্য ব্যবহৃত পরিষ্কার ভূগর্ভস্থ জল",
+    "প্রক্রিয়াজাত মাছ ধোয়ার জন্য ব্যবহৃত পানীয় জল (রিভার্স অসমোসিস)"
   ],
   "has_freezer_van_transportation": true,
   "cooking_temperature_en": "N/A",
   "cooking_temperature_bn": "N/A",
-  "batch_number": "BATCH-001",
-  "secondary_batch": "SBATCH-001",
-  "lot_number": "LOT-001",
+  "batch_number": "FI-HI-20251109-0001",
+  "secondary_batch": "FI-HI-20251109-0001",
+  "lot_number": "LOT-001AR-IL-20251123-0001",
   "net_weight": 2.5,
   "certification_en": [
     "ISO22000",
@@ -43,19 +43,19 @@
     "https://iso.org/22000",
     "https://haccp.org"
   ],
-  "source_of_fish_en": "Padma River",
-  "source_of_fish_bn": "Padma River",
+  "source_of_fish_en": "Culture",
+  "source_of_fish_bn": "চাষ",
   "production_latitude": 23.8103,
   "production_longitude": 90.4125,
   "producer_organization_en": "Padma Fisheries Ltd",
-  "producer_organization_bn": "Padma Fisheries Ltd",
+  "producer_organization_bn": "পদ্মা ফিশারিজ লিমিটেড",
   "fish_collection_center_latitude": 23.90,
   "fish_collection_center_longitude": 90.44,
-  "collector_organization_en": "Dhaka Fish Collectors",
-  "collector_organization_bn": "Dhaka Fish Collectors",
+  "collector_organization_en": "Fish Mart",
+  "collector_organization_bn": "ফিস মার্ট",
   "fish_processing_unit_latitude": 23.75,
   "fish_processing_unit_longitude": 90.39,
-  "processor_organization_en": "Bangladesh Fish Processing Ltd",
-  "processor_organization_bn": "Bangladesh Fish Processing Ltd",
+  "processor_organization_en": "Daily Food Shop",
+  "processor_organization_bn": "ডেইলি ফুড শপ",
   "docType": "asset"
 }
