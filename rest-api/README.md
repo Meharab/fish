@@ -6,7 +6,7 @@ curl -X POST 'http://localhost:3000/invoke' \
   --data 'channelid=mychannel' \
   --data 'chaincodeid=fish' \
   --data 'function=CreateAsset' \
-  --data-urlencode 'args@asset.json'
+  --data-urlencode 'args@fish.json'
 ```
 
 # Sample query for getting QR details
